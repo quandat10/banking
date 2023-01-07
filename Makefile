@@ -29,4 +29,7 @@ server:
 test:
 	go test -v -cover ./...
 
-.PHONY: network postgres createdb dropdb migrateup migratedown sqlc server test
+mock:
+	mockgen -package mockdb -destination db/mock/store.go  github.com/quandat10/banking/db/sqlc Store
+
+.PHONY: network postgres createdb dropdb migrateup migratedown sqlc server test mock
